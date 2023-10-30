@@ -1,15 +1,19 @@
-from typing import Union
-
 from fastapi import FastAPI
 
 app = FastAPI()
 
+import pika
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+conn_params = pika.ConnectionParameters(host='127.0.0.1')
+conn = pika.BlockingConnection(conn_params)
+channel = conn.channel()
+channel.queue_declare(queue='wab_4')
 
+def callback(channel, method, properties, body):
+    print(f"{channel}\n\n{method}\n\n{properties}\n\n{body}")
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+channel.basic_consume(
+    queue='wab_4',
+    auto_ack=True,
+    on_message_callback=callback
+)
