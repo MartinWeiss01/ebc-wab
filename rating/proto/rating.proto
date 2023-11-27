@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+service Rating {
+    // Define endpoint
+    rpc lastRating (lastRatingRequest) returns (lastRatingResponse);
+}
+
+message lastRatingRequest {
+    string coffey_shop_id = 1;
+    int32 amount = 2;
+}
+
+message UserRating {
+    string date = 1;
+    double value = 2;
+}
+
+message lastRatingResponse {
+    repeated Rating ratings = 1;
+}

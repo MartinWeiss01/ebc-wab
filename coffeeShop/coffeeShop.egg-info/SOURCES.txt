@@ -1,0 +1,6 @@
+pyproject.toml
+coffeeShop.egg-info/PKG-INFO
+coffeeShop.egg-info/SOURCES.txt
+coffeeShop.egg-info/dependency_links.txt
+coffeeShop.egg-info/requires.txt
+coffeeShop.egg-info/top_level.txt

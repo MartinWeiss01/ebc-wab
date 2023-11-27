@@ -1,0 +1,20 @@
+[project]
+name = "rating"
+version = "2023"
+description = ""
+authors = [
+    {name = "Martin Weiss", email = "xweiss3@mendelu.cz"},
+]
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.23.2",
+    "grpcio>=1.59.3",
+    "grpcio-tools>=1.59.3",
+]
+requires-python = ">=3.11"
+readme = "README.md"
+license = {text = "MIT"}
+
+[tool.pdm.scripts]
+dev = "uvicorn src.main:app --reload"
+grpc = "python -m grpc_tools.protoc -I./proto/ --python_out=./src --grpc_python_out=./src ./proto/rating.proto"
